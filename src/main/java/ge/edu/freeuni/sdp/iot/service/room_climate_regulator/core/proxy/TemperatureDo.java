@@ -1,4 +1,4 @@
-package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data;
+package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,9 +12,9 @@ public class TemperatureDo {
     @JsonProperty(value = "floor_id", required = false)
     private String floorId;
 
-    private Integer temperature;
+    private Double temperature;
 
-    public TemperatureDo(String houseId, String floorId, Integer temperature) {
+    public TemperatureDo(String houseId, String floorId, Double temperature) {
         this.houseId = houseId;
         this.floorId = floorId;
         this.temperature = temperature;
@@ -36,11 +36,11 @@ public class TemperatureDo {
         this.floorId = floorId;
     }
 
-    public Integer getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Integer temperature) {
+    public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
 }

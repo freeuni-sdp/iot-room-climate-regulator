@@ -1,7 +1,6 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy;
 
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.ServiceState;
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data.TemperatureDo;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
