@@ -10,7 +10,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public class HeatingSwitchServiceProxy {
+public class HeatingSwitchProxy {
 
     private static final String REAL_HEATING_SWITCH_API =
             "https://iot-heating-switch.herokuapp.com";
@@ -20,7 +20,7 @@ public class HeatingSwitchServiceProxy {
     private final Client client;
     private final ServiceState state;
 
-    public HeatingSwitchServiceProxy(ServiceState state) {
+    public HeatingSwitchProxy(ServiceState state) {
         this.state = state;
         ClientConfig config = new ClientConfig().register(JacksonFeature.class);
         this.client = ClientBuilder.newClient(config);

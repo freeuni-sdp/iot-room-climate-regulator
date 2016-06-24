@@ -29,8 +29,8 @@ public class RoomClimateRegulatorService {
         return new AirConditioningSwitchProxy(getServiceState());
     }
 
-    protected HeatingSwitchServiceProxy getHeatingSwitch() {
-        return new HeatingSwitchServiceProxy(getServiceState());
+    protected HeatingSwitchProxy getHeatingSwitch() {
+        return new HeatingSwitchProxy(getServiceState());
     }
 
     protected HouseRegistryServiceProxy getHouseRegistryService() {
