@@ -35,7 +35,7 @@ public class HouseRegistryServiceProxy {
         return apiUrl;
     }
 
-    public boolean isValidHouse(String houseId) {
+    public boolean get(String houseId) {
         String requestUrl = String.format("%s/houses/%s", getApiUrl(), houseId);
         Response response = client
                 .target(requestUrl)
