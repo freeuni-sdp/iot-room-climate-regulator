@@ -9,6 +9,10 @@ public class RoomClimateRegulatorTaskDo {
 
     private Integer period;
 
+    public RoomClimateRegulatorTaskDo() {
+
+    }
+
     public RoomClimateRegulatorTaskDo(Double temperature, Integer period) {
         this.temperature = temperature;
         this.period = period;

@@ -23,5 +23,6 @@ public class RoomClimateRegulator implements Runnable {
 
     private void processTask(Task task) {
         // TODO add task proccessing
+        System.out.println(task);
     }
 }

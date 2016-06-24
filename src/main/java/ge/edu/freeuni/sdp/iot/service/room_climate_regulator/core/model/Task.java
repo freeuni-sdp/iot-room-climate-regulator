@@ -67,8 +67,23 @@ public class Task {
         return ret;
     }
 
+    public boolean isAlive() {
+        return System.currentTimeMillis() - startTime > (long) period;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(houseId, floorId);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "houseId='" + houseId + '\'' +
+                ", floorId='" + floorId + '\'' +
+                ", temperature=" + temperature +
+                ", period=" + period +
+                ", startTime=" + startTime +
+                '}';
     }
 }

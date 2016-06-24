@@ -1,6 +1,5 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.service;
 
-import com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaParsingConfig;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model.Task;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy.ProxyFactory;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.worker.RoomClimateRegulator;
@@ -10,9 +9,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import javax.servlet.http.HttpSessionBindingEvent;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
