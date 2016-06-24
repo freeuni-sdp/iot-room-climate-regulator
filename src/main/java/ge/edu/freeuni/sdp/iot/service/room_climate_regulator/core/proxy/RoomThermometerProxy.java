@@ -37,7 +37,10 @@ public class RoomThermometerProxy {
 
     public TemperatureDo get(String houseId, String floorId) {
         String requestUrl = String.format("%s/houses/%s/floors/%s", getApiUrl(), houseId, floorId);
-        Response response = client.target(requestUrl).request().get();
+        Response response = client
+                .target(requestUrl)
+                .request()
+                .get();
 
         TemperatureDo ret = null;
         if (ResponseUtils.is200(response))
