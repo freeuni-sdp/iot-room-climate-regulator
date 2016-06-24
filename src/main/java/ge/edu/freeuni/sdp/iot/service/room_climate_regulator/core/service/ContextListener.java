@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.service;
 
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model.Task;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -7,10 +10,16 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import javax.servlet.http.HttpSessionBindingEvent;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @WebListener()
 public class ContextListener implements ServletContextListener,
         HttpSessionListener, HttpSessionAttributeListener {
+
+    private static final String TASK_POOL = "TaskPool";
+
 
     // Public constructor is required by servlet spec
     public ContextListener() {
@@ -24,6 +33,11 @@ public class ContextListener implements ServletContextListener,
          initialized(when the Web application is deployed). 
          You can initialize servlet context related data here.
       */
+
+        ServletContext sc = sce.getServletContext();
+
+        Set<Task> tasks = Collections.synchronizedSet(new HashSet<Task>());
+        sc.setAttribute(TASK_POOL, tasks);
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
@@ -31,6 +45,11 @@ public class ContextListener implements ServletContextListener,
          (the Web application) is undeployed or 
          Application Server shuts down.
       */
+
+        ServletContext sc = sce.getServletContext();
+
+        sc.removeAttribute(TASK_POOL);
+
     }
 
     // -------------------------------------------------------
