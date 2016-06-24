@@ -2,6 +2,8 @@ package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model;
 
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.service.RoomClimateRegulatorTaskDo;
 
+import java.util.Objects;
+
 public class Task {
 
     private String houseId;
@@ -63,5 +65,10 @@ public class Task {
         ret.setTemperature(taskDo.getTemperature());
 
         return ret;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(houseId, floorId);
     }
 }
