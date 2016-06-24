@@ -16,6 +16,8 @@ public class Task {
 
     private long startTime;
 
+    private boolean started;
+
     public Task() {
     }
 
@@ -59,6 +61,14 @@ public class Task {
         this.startTime = startTime;
     }
 
+    public boolean isStarted() {
+        return started;
+    }
+
+    public void setStarted(boolean started) {
+        this.started = started;
+    }
+
     public static Task fromDo(RoomClimateRegulatorTaskDo taskDo) {
         Task ret = new Task();
         ret.setPeriod(taskDo.getPeriod());
@@ -68,7 +78,7 @@ public class Task {
     }
 
     public boolean isAlive() {
-        return System.currentTimeMillis() - startTime > (long) period;
+        return System.currentTimeMillis() - startTime <= (long) period;
     }
 
     @Override

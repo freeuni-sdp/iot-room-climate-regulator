@@ -6,6 +6,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 public class HouseRegistryServiceProxy {
@@ -39,7 +40,7 @@ public class HouseRegistryServiceProxy {
         String requestUrl = String.format("%s/houses/%s", getApiUrl(), houseId);
         Response response = client
                 .target(requestUrl)
-                .request()
+                .request(MediaType.APPLICATION_JSON_TYPE)
                 .get();
 
         return ResponseUtils.is200(response);

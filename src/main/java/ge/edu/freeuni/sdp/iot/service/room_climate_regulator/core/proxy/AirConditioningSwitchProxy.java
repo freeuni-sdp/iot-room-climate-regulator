@@ -37,7 +37,7 @@ public class AirConditioningSwitchProxy {
     }
 
     public void create(String houseId, AirConditioningSwitchTaskDo task) {
-        String requestUrl = String.format("%s/houses/%s/air-conditioning-switch", getApiUrl(), houseId);
+        String requestUrl = String.format("%s/houses/%s", getApiUrl(), houseId);
         client.target(requestUrl)
                 .request()
                 .post(Entity.entity(task, MediaType.APPLICATION_JSON_TYPE));

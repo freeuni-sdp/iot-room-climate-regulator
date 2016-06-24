@@ -7,9 +7,13 @@ public class HeatingSwitchTaskDo {
 
     private Integer period;
 
+    public HeatingSwitchTaskDo() {
+    }
+
     public HeatingSwitchTaskDo(Integer period) {
         this.period = period;
     }
+
 
     public Integer getPeriod() {
         return period;

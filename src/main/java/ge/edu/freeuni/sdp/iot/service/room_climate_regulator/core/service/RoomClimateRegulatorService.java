@@ -41,7 +41,7 @@ public class RoomClimateRegulatorService {
         task.setHouseId(houseId);
         task.setFloorId(floorId);
         task.setStartTime(System.currentTimeMillis());
-
+        task.setStarted(false);
         return task;
     }
 

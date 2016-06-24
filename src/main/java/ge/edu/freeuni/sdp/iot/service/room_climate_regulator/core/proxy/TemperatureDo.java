@@ -14,6 +14,9 @@ public class TemperatureDo {
 
     private Double temperature;
 
+    public TemperatureDo() {
+    }
+
     public TemperatureDo(String houseId, String floorId, Double temperature) {
         this.houseId = houseId;
         this.floorId = floorId;

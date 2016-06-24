@@ -51,7 +51,7 @@ public class HeatingSwitchProxy {
         String requestUrl = String.format("%s/house/%s/floor/%s", getApiUrl(), houseId, floorId);
         Response response = client
                 .target(requestUrl)
-                .request()
+                .request(MediaType.APPLICATION_JSON_TYPE)
                 .delete();
 
         return ResponseUtils.is200(response);
