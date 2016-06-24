@@ -1,4 +1,4 @@
-package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core;
+package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.service;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

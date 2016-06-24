@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core;
 
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.service.PingService;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
