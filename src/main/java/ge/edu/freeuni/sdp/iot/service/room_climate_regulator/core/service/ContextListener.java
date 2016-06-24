@@ -1,6 +1,9 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.service;
 
+import com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaParsingConfig;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model.Task;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy.ProxyFactory;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.worker.RoomClimateRegulator;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -13,6 +16,10 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @WebListener()
 public class ContextListener implements ServletContextListener,
@@ -35,9 +42,15 @@ public class ContextListener implements ServletContextListener,
       */
 
         ServletContext sc = sce.getServletContext();
-
         Set<Task> tasks = Collections.synchronizedSet(new HashSet<Task>());
         sc.setAttribute(TASK_POOL, tasks);
+
+        ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(1);
+        sc.setAttribute(ScheduledThreadPoolExecutor.class.getSimpleName(), executor);
+
+        ScheduledFuture<?> future = executor.scheduleAtFixedRate(
+                new RoomClimateRegulator(tasks, new ProxyFactory()), 0, 1, TimeUnit.MINUTES);
+        sc.setAttribute(ScheduledFuture.class.getSimpleName(), future);
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
@@ -48,8 +61,19 @@ public class ContextListener implements ServletContextListener,
 
         ServletContext sc = sce.getServletContext();
 
-        sc.removeAttribute(TASK_POOL);
+        ScheduledFuture<?> future = (ScheduledFuture<?>) sc.getAttribute(ScheduledFuture.class.getSimpleName());
+        sc.removeAttribute(ScheduledFuture.class.getSimpleName());
+        while (true) {
+            if (future.cancel(false))
+                break;
+        }
 
+        ScheduledThreadPoolExecutor executor =
+                (ScheduledThreadPoolExecutor) sc.getAttribute(ScheduledThreadPoolExecutor.class.getSimpleName());
+        sc.removeAttribute(ScheduledThreadPoolExecutor.class.getSimpleName());
+        executor.shutdown();
+
+        sc.removeAttribute(TASK_POOL);
     }
 
     // -------------------------------------------------------
