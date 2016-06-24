@@ -21,27 +21,8 @@ public class RoomClimateRegulatorService {
         return Response.ok().build();
     }
 
-    protected ServiceState getServiceState() {
-        return ServiceState.DEV;
+    protected ProxyFactory getProxyFactory() {
+        return new ProxyFactory();
     }
 
-    protected AirConditioningSwitchProxy getAirConditioningSwitch() {
-        return new AirConditioningSwitchProxy(getServiceState());
-    }
-
-    protected HeatingSwitchProxy getHeatingSwitch() {
-        return new HeatingSwitchProxy(getServiceState());
-    }
-
-    protected HouseRegistryServiceProxy getHouseRegistryService() {
-        return new HouseRegistryServiceProxy(getServiceState());
-    }
-
-    protected HumanAtHomeServiceProxy getHumanAtHomeService() {
-        return new HumanAtHomeServiceProxy(getServiceState());
-    }
-
-    protected RoomThermometerProxy getRoomThermometer() {
-        return new RoomThermometerProxy(getServiceState());
-    }
 }
