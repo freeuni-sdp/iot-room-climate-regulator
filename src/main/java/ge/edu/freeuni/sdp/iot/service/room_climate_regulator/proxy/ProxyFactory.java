@@ -1,6 +1,6 @@
-package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy;
+package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy;
 
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model.ServiceState;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.ServiceState;
 
 public class ProxyFactory {
 

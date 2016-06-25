@@ -1,11 +1,11 @@
-package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.worker;
+package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.worker;
 
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model.InvalidTaskException;
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model.Task;
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy.AirConditioningSwitchTaskDo;
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy.HeatingSwitchTaskDo;
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy.ProxyFactory;
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy.TemperatureDo;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.InvalidTaskException;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.Task;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.AirConditioningSwitchTaskDo;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.HeatingSwitchTaskDo;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.ProxyFactory;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.TemperatureDo;
 
 import java.util.HashSet;
 import java.util.Set;

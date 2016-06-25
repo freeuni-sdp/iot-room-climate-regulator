@@ -1,4 +1,4 @@
-package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy;
+package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

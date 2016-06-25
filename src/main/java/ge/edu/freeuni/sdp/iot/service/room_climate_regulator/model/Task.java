@@ -1,6 +1,6 @@
-package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model;
+package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model;
 
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.service.RoomClimateRegulatorTaskDo;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.service.RoomClimateRegulatorTaskDo;
 
 import java.util.Objects;
 

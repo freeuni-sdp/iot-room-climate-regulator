@@ -1,7 +1,7 @@
-package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.service;
+package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.service;
 
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.model.Task;
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.core.proxy.ProxyFactory;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.Task;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.ProxyFactory;
 
 import javax.servlet.ServletContext;
 import javax.validation.constraints.NotNull;
