@@ -96,4 +96,19 @@ public class Task {
                 ", startTime=" + startTime +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Task task = (Task) o;
+
+        if (Double.compare(task.temperature, temperature) != 0) return false;
+        if (period != task.period) return false;
+        if (started != task.started) return false;
+        if (houseId != null ? !houseId.equals(task.houseId) : task.houseId != null) return false;
+        return floorId != null ? floorId.equals(task.floorId) : task.floorId == null;
+
+    }
 }
