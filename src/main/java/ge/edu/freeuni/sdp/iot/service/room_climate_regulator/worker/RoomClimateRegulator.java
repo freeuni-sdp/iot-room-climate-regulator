@@ -1,7 +1,6 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.worker;
 
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data.Repository;
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data.RepositoryFactory;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.InvalidTaskException;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.Task;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.AirConditioningSwitchTaskDo;

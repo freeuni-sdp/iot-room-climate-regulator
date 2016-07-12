@@ -36,7 +36,6 @@ public class RoomClimateRegulatorServiceTest extends JerseyTest {
     private HumanAtHomeServiceProxy humanAtHomeServiceProxy;
     @Mock
     private RoomThermometerProxy roomThermometerProxy;
-    private double randomTemperature;
 
     @Override
     protected Application configure() {
