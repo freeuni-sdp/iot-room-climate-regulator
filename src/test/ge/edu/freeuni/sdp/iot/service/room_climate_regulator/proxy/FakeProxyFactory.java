@@ -1,7 +1,5 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy;
 
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.worker.RoomClimateRegulator;
-
 public class FakeProxyFactory extends ProxyFactory {
 
     private static FakeProxyFactory instance;

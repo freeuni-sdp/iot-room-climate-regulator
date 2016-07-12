@@ -1,6 +1,7 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model;
 
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.service.RoomClimateRegulatorTaskDo;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.worker.RoomClimateRegulator;
 
 import java.util.Objects;
 
@@ -75,6 +76,10 @@ public class Task {
         ret.setTemperature(taskDo.getTemperature());
 
         return ret;
+    }
+
+    public RoomClimateRegulatorTaskDo toDo() {
+        return new RoomClimateRegulatorTaskDo(temperature, period);
     }
 
     public boolean isAlive() {
