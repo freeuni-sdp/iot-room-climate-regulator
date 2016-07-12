@@ -1,5 +1,7 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.service;
 
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data.Repository;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data.RepositoryFactory;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.Task;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.ProxyFactory;
 
@@ -9,7 +11,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Set;
 
 
 @Path("/houses/{house_id}/floors/{floor_id}/task")
@@ -17,21 +18,15 @@ import java.util.Set;
 @Produces(MediaType.APPLICATION_JSON)
 public class RoomClimateRegulatorService {
 
-    private static final String TASK_POOL = "TaskPool";
-
     @PUT
     public Response update(@PathParam("house_id") String houseId, @PathParam("floor_id") String floorId,
                            @NotNull RoomClimateRegulatorTaskDo taskDo, @Context ServletContext sc) {
         if (!getProxyFactory().getHouseRegistryService().get(houseId))
-            throw new WebApplicationException(404);
-
-        Set<Task> tasks = (Set<Task>) sc.getAttribute(TASK_POOL);
-        if (tasks == null)
-            throw new WebApplicationException(503);
+            throw new NotFoundException();
 
         Task task = getTask(houseId, floorId, taskDo);
 
-        tasks.add(task);
+        getRepository().insertOrUpdate(task);
 
         return Response.ok().build();
     }
@@ -46,7 +41,11 @@ public class RoomClimateRegulatorService {
     }
 
     protected ProxyFactory getProxyFactory() {
-        return new ProxyFactory();
+        return ProxyFactory.getProxyFactory();
+    }
+
+    protected Repository getRepository() {
+        return RepositoryFactory.create();
     }
 
 }

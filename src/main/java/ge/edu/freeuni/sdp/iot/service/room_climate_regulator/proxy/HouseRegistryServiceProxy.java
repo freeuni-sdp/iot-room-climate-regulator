@@ -42,7 +42,6 @@ public class HouseRegistryServiceProxy {
                 .target(requestUrl)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get();
-
         return ResponseUtils.is200(response);
     }
 }

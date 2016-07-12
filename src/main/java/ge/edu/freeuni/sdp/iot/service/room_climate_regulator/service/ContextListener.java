@@ -1,6 +1,6 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.service;
 
-import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.Task;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data.RepositoryFactory;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.ProxyFactory;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.worker.RoomClimateRegulator;
 
@@ -12,9 +12,6 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -23,9 +20,6 @@ import java.util.concurrent.TimeUnit;
 @WebListener()
 public class ContextListener implements ServletContextListener,
         HttpSessionListener, HttpSessionAttributeListener {
-
-    private static final String TASK_POOL = "TaskPool";
-
 
     // Public constructor is required by servlet spec
     public ContextListener() {
@@ -41,14 +35,12 @@ public class ContextListener implements ServletContextListener,
       */
 
         ServletContext sc = sce.getServletContext();
-        Set<Task> tasks = Collections.synchronizedSet(new HashSet<Task>());
-        sc.setAttribute(TASK_POOL, tasks);
 
         ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(1);
         sc.setAttribute(ScheduledThreadPoolExecutor.class.getSimpleName(), executor);
 
         ScheduledFuture<?> future = executor.scheduleAtFixedRate(
-                new RoomClimateRegulator(tasks, new ProxyFactory()), 0, 1, TimeUnit.MINUTES);
+                new RoomClimateRegulator(RepositoryFactory.create(), new ProxyFactory()), 0, 1, TimeUnit.MINUTES);
         sc.setAttribute(ScheduledFuture.class.getSimpleName(), future);
     }
 
@@ -71,8 +63,6 @@ public class ContextListener implements ServletContextListener,
                 (ScheduledThreadPoolExecutor) sc.getAttribute(ScheduledThreadPoolExecutor.class.getSimpleName());
         sc.removeAttribute(ScheduledThreadPoolExecutor.class.getSimpleName());
         executor.shutdown();
-
-        sc.removeAttribute(TASK_POOL);
     }
 
     // -------------------------------------------------------

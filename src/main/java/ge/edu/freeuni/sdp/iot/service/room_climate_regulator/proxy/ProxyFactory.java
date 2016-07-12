@@ -4,8 +4,12 @@ import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.ServiceState;
 
 public class ProxyFactory {
 
+    public static ProxyFactory getProxyFactory() {
+        return new ProxyFactory();
+    }
+
     protected ServiceState getServiceState() {
-        return ServiceState.DEV;
+        return ServiceState.REAL;
     }
 
     public AirConditioningSwitchProxy getAirConditioningSwitch() {

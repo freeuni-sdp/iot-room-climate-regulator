@@ -1,5 +1,7 @@
 package ge.edu.freeuni.sdp.iot.service.room_climate_regulator.worker;
 
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data.Repository;
+import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.data.RepositoryFactory;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.InvalidTaskException;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.model.Task;
 import ge.edu.freeuni.sdp.iot.service.room_climate_regulator.proxy.AirConditioningSwitchTaskDo;
@@ -13,15 +15,19 @@ import java.util.Set;
 public class RoomClimateRegulator implements Runnable {
 
     private static final double TEMP_EPS = 1;
+
     private static final int HEATING_PERIOD = 90;
+
     private static final double TEMP_THRESHOLD = 18;
+
     private static final double AIR_COND_TEMP_THRESHOLD = 5;
 
-    private Set<Task> tasks;
-    private ProxyFactory proxyFactory;
+    private final Repository repository;
 
-    public RoomClimateRegulator(Set<Task> tasks, ProxyFactory proxyFactory) {
-        this.tasks = tasks;
+    private final ProxyFactory proxyFactory;
+
+    public RoomClimateRegulator(Repository repository, ProxyFactory proxyFactory) {
+        this.repository = repository;
         this.proxyFactory = proxyFactory;
     }
 
@@ -29,7 +35,7 @@ public class RoomClimateRegulator implements Runnable {
     public void run() {
         Set<Task> tasksToRemove = new HashSet<>();
 
-        for (Task task : tasks) {
+        for (Task task : repository.getAll()) {
             try {
                 processTask(task);
             } catch (InvalidTaskException ex) {
@@ -37,7 +43,7 @@ public class RoomClimateRegulator implements Runnable {
             }
         }
 
-        tasks.removeAll(tasksToRemove);
+        repository.removeAll(tasksToRemove);
     }
 
     private void processTask(Task task) throws InvalidTaskException {
